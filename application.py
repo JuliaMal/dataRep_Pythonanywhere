@@ -2,7 +2,7 @@ from flask import Flask, url_for, request, redirect, abort, jsonify
 from memberDAO import memberDAO
 
 
-app = Flask(__name__, static_url_path='', static_folder='')
+app = Flask(__name__, static_url_path='', static_folder='.')
 
 @app.route('/')
 def index():

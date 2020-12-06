@@ -20,7 +20,7 @@
         <h1>Gym Members</h1>
 
         <!-- Creates container with Create button -->
-        <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+        <div> <button class="button button2" id="showCreateButton" onclick="showCreate()">Create</button></div>
 
         <!-- Creates container with the table -->
         <div>
@@ -30,8 +30,8 @@
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Age</th>
-                        <th>Create</th>
                         <th>Update</th>
+                        <th>Delete</th>
                 </tr>
 
             </table>
@@ -43,9 +43,9 @@
                 <input type="hidden" name="id"/>
                 <label>Name: </label><input type="text" name="name"/> <br/><br/>
                 <label>Surname: </label><input type="text" name="surname"/> <br/><br/>
-                <label>Age: </label><input type="number" name="age"/> <br/>
-                <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+                <label>Age: </label><input type="number" name="age"/> <br/><br/>
+                <span><button class="button button1" id="doCreateButton" onclick="doCreate()">Create</button></span>
+                <span><button class="button button2" id="doUpdateButton" onclick="doUpdate()">Update</button></span>
                 
         </div>
     </body>
@@ -139,9 +139,9 @@
         var cell4 = rowElement.insertCell(3);
         cell4.innerHTML = member.age
         var cell5 = rowElement.insertCell(4);
-        cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
+        cell5.innerHTML = '<button class="button button1" onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
-        cell6.innerHTML = '<button onclick=doDelete(this)>delete</button>'
+        cell6.innerHTML = '<button class="button button2" onclick=doDelete(this)>Delete</button>'
 
     }
 

@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+}
+
+button {
+    background-color: #f79a48;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+    position: center;
+}
+
+div.fixed {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 600px;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: left;
+}
+input {
+    display: inline-block;
+    float: left;
+}

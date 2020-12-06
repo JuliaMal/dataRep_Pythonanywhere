@@ -1,13 +1,28 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title> view Members</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        
+        <!-- Link to the css file --> 
+        <link href="css_styles.css" rel="stylesheet" type="text/css">
+    
     </head>
     <body>
-        <h1>Members</h1>
+    
+        <h1>Gym Members</h1>
+
+        <!-- Creates container with Create button -->
         <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+
+        <!-- Creates container with the table -->
         <div>
             <table class="table" id="memberTable">
                 <tr>
@@ -21,18 +36,22 @@
 
             </table>
         </div>
-        <div id='createUpdateForm' style="display: none">
+
+        <!-- Creates container for adding a new member -->
+        <div class='fixed' id='createUpdateForm' style="display: none">
                 <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span>Member</h2>
                 <input type="hidden" name="id"/>
-                Name <input type="text" name="name"/> <br/>
-                Surname <input type="text" name="surname"/> <br/>
-                Age <input type="number" name="age"/> <br/>
+                <label>Name: </label><input type="text" name="name"/> <br/><br/>
+                <label>Surname: </label><input type="text" name="surname"/> <br/><br/>
+                <label>Age: </label><input type="number" name="age"/> <br/>
                 <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
                 <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
                 
         </div>
     </body>
+
     <script>
+    // When Create button is pressed the function below describes which elements should be visible and which hidden               
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('memberTable').style.display="none"
@@ -45,11 +64,14 @@
         document.getElementById('doUpdateButton').style.display="none"
 
     }
+    // Shows all records in the table 
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
         document.getElementById('memberTable').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
+
+    //When Update button is pressed the function below describes which elements should be visible and which hidden
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('memberTable').style.display="none"
@@ -63,11 +85,12 @@
 
 
         var rowElement = buttonElement.parentNode.parentNode
-        // these is a way of finding the closest <tr> which would safer, closest()
 
         var member = getMemberFromRow(rowElement)
         populateFormWithMember(member)
     }
+
+    // When Create button is pressed, the function read the user input and creates a new member record
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
 
@@ -79,15 +102,21 @@
         console.log(JSON.stringify(member))
         createMemberAjax(member)
     }
+
+    // When Update button is pressed, the function gets the actual member details, allows user to update the fields and then bypass this info to the DB
+    
     function doUpdate(){
         var member = getMemberFromForm();
         var rowElement = document.getElementById(member.id);
         updateMemberAjax(member);
         setMemberInRow(rowElement,member);
 
+        // the update form is cleared and user is returned to the main table
         clearForm();
         showViewAll();
     }
+
+    // this function deletes a member record from the DB
     function doDelete(r){
         var tableElement = document.getElementById('memberTable');
         var rowElement = r.parentNode.parentNode;
@@ -95,6 +124,8 @@
         deleteMemberAjax(rowElement.getAttribute("id"));
         tableElement.deleteRow(index);
     }
+
+    // this function adds a member record to the DB
     function addMemberToTable(member){
         var tableElement = document.getElementById('memberTable')
         var rowElement = tableElement.insertRow(-1)
@@ -114,6 +145,7 @@
 
     }
 
+    // this function clears the form by setting all field values to blank
     function clearForm(){
         var form = document.getElementById('createUpdateForm')
 
@@ -122,6 +154,7 @@
         form.querySelector('input[name="age"]').value=''
     
     }
+    // this function clears the form by setting all field values to blank
     function getMemberFromRow(rowElement){
         var member ={}
         member.id  = rowElement.getAttribute('id')
@@ -157,6 +190,7 @@
         return member
     }
 
+    // AJAX function to get all members
     host = window.location.origin
     function getAllAjax(){
         $.ajax({
@@ -177,6 +211,8 @@
         });
 
     }
+
+    // AJAX function to create a new member
     function createMemberAjax(member){
         
         console.log(JSON.stringify(member));
@@ -187,7 +223,6 @@
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
-                //console.log(result);
                 member.id = result.id
                 addMemberToTable(member)
                 clearForm()
@@ -198,8 +233,9 @@
             }
         });
     }
+
+    // AJAX function to update member's details
     function updateMemberAjax(member){
-        //var car = {"reg":"12 D 1234","price":8000}
         console.log(JSON.stringify(member));
         $.ajax({
             "url": host+"/members/"+encodeURI(member.id),
@@ -208,7 +244,6 @@
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
-               // console.log(result);
 
             },
             "error":function(xhr,status,error){
@@ -216,8 +251,9 @@
             }
         });
     }
+
+    // AJAX function to delete a member
     function deleteMemberAjax(id){
-        //console.log(JSON.stringify(member));
         $.ajax({
             "url": host+"/members/"+encodeURI(id),
             "method":"DELETE",
@@ -225,7 +261,6 @@
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
-                //console.log(result);
 
             },
             "error":function(xhr,status,error){

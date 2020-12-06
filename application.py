@@ -7,7 +7,7 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 @app.route('/')
 def index():
-    return "Hello!!!"
+    return "This is a GYM Database"
 
 #get all
 # code passed to cmd:

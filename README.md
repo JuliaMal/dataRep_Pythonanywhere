@@ -8,29 +8,29 @@ The following project contains:
     3. Web interface, that uses AJAX calls to perform the CRUD operations
 
 
-
-
 For more information please visit the Githib repository: 
-https://github.com/JuliaMal/Machine_learning_and_stats_Assessment
+https://github.com/JuliaMal/dataRep_Pythonanywhere
+
+The link to the project running on PythonAnywhere:
+http://julitocka.pythonanywhere.com/memberviewer.html
 
 The Github repository contains the following files:
-   1. Tasks.ipynb - This is a Jupyter notebook that contains the main body of work, explanations, notes. references. etc.
-   2. iris.csv - This is the Fisher's iris dataset used for analysis.
-   3. ReadMe.md - This is a Markdown file, containing explanation what is saved in the Github repository and instructions how to run Jupyter notebook.
-   4. .gitignore - This file tells git which files (or patterns) should be ignored. In our case it's Python.
-   5. LICENSE - This is an open source license. As this repository is mainated as PUBLIC, a license needs to be in place, so that others are free to use, change and distribute it.
+   1. application.py - FLASK server
+   2. memberDAO.py - REST API
+   3. memberviewer.html - web interface of the GYM Members
+   4. Requirements.txt - list of libraries that need to be installed on a virtual enviroment
+   5. css-styles.css - file that contains css styles for the web page
+   6. background.jpg - background picture
+   7. SQL_table - description of the SQL table
+   8. dbconfig.py - contains the information about host, user, password and database 
+   9. ReadMe.md - This is a Markdown file, containing explanation what is saved in the Github repository and instructions how to run the project.
+   10. .gitignore - This file tells git which files (or patterns) should be ignored. In our case it's Python and virtual enviroment - venv.
 
-   #1 How to download this repository:
+How to run the web application:
 
-        1. Go to Github or click on the link provided earlier.
-        2. Clich the "Clone or Download" button
-        3. Choose between the options "Open in Desktop" or "Download ZIP"
-
-   #2 How to run the code:
-
-        1. The Jupyter Notebook software is included in the Python installation we obtained from Anaconda. 
-        2. First you need to install Python from Anaconda.
-        3. Then open a terminal window.
-        4. Make sure that you're in the same directory as the saved in the repository, you have downloaded in step #1 (Type cd Path_to_the_folder, e.g. cd C:\User\GMIT\Assessment_tasks)
-        5. Type jupyter notebook or jupyter lab to launch the Jupyter Notebook App.
-        6. The notebook interface will appear in a new browser window or tab.
+    - The Web application is hosted online using PythonAnywhere
+    - Just click on the link: http://julitocka.pythonanywhere.com/memberviewer.html to be redirected to the Gym Members database
+    - By default you will get the list of all gym members, currently maintained in the mySQL DB
+    - If you want to add a new member, press the button Create on the top left corner on the page
+    - If you want to change the info about a particular member, choose the member and click the button Update
+    - If you want to delete a member from the database, choose the member and click Delete. This will permamently remove the member's data from the DB.

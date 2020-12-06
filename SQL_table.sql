@@ -1,0 +1,1 @@
+CREATE TABLE Members(id int NOT NULL AUTO_INCREMENT, name varchar(250), surname varchar(250), age int);
